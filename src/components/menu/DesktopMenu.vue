@@ -1,11 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import {
-    ClockIcon,
-    ListBulletIcon,
-    ChartBarIcon,
-} from "@heroicons/vue/24/solid";
 import TrayItems from "./items/TrayItems.vue";
+import TrackApp from "./applications/TrackApp.vue";
 
 const isMenuOpen = ref(false);
 const isAppOpen = ref(false);
@@ -113,7 +109,9 @@ const closeApp = () => {
                 </div>
             </div>
 
-            <div class="flex-1 overflow-auto bg-gray-100">
+            <TrackApp></TrackApp>
+
+            <!-- <div class="flex-1 overflow-auto bg-gray-100">
                 <div class="p-6 max-w-6xl mx-auto">
                     <nav>
                         <ul class="flex items-center justify-around border-t">
@@ -147,7 +145,7 @@ const closeApp = () => {
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
