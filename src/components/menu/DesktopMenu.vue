@@ -108,44 +108,7 @@ const closeApp = () => {
                     </button>
                 </div>
             </div>
-
             <TrackApp></TrackApp>
-
-            <!-- <div class="flex-1 overflow-auto bg-gray-100">
-                <div class="p-6 max-w-6xl mx-auto">
-                    <nav>
-                        <ul class="flex items-center justify-around border-t">
-                            <li class="flex-1">
-                                <a
-                                    href="#timeline"
-                                    class="flex flex-col items-center p-2 gap-2 text-xs text-black"
-                                >
-                                    <ClockIcon class="h-6 w-6" />
-                                    Таймлайн
-                                </a>
-                            </li>
-                            <li class="flex-1">
-                                <a
-                                    href="#activities"
-                                    class="flex flex-col items-center p-2 gap-2 text-xs text-black"
-                                >
-                                    <ListBulletIcon class="h-6 w-6" />
-                                    Активности
-                                </a>
-                            </li>
-                            <li class="flex-1">
-                                <a
-                                    href="#progress"
-                                    class="flex flex-col items-center p-2 gap-2 text-xs text-black"
-                                >
-                                    <ChartBarIcon class="h-6 w-6" />
-                                    Прогресс
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
