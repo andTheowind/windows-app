@@ -2,27 +2,28 @@
 import { ref } from "vue";
 import TrayItems from "./items/TrayItems.vue";
 import TrackApp from "./applications/TrackApp.vue";
+import CalculatorApp from "./applications/CalculatorApp.vue";
 
 const isMenuOpen = ref(false);
 const isAppOpen = ref(false);
 const activeAppTitle = ref("");
+const activeAppComponent = ref(null);
 
 const menuItems = ref([
     {
         id: 1,
-        title: "Пункт меню 1",
+        title: "Калькулятор",
+        component: CalculatorApp,
     },
     {
         id: 2,
-        title: "Пункт меню 2",
+        title: "Трекер",
+        component: TrackApp,
     },
     {
         id: 3,
-        title: "Пункт меню 3",
-    },
-    {
-        id: 4,
-        title: "TrackApp",
+        title: "Приложение в разработке",
+        component: null,
     },
 ]);
 
@@ -33,10 +34,14 @@ const toggleMenu = () => {
 const openApp = (item) => {
     isAppOpen.value = true;
     activeAppTitle.value = item.title;
+    activeAppComponent.value = item.component;
+    isMenuOpen.value = false;
 };
 
 const closeApp = () => {
     isAppOpen.value = false;
+    activeAppTitle.value = "";
+    activeAppComponent.value = null;
 };
 </script>
 
@@ -53,7 +58,7 @@ const closeApp = () => {
             </button>
 
             <div
-                v-if="isMenuOpen && !isAppOpen"
+                v-if="isMenuOpen"
                 class="absolute left-3 bottom-12 w-64 bg-[#C0C0C0] border-2 border-t-gray-300 border-l-gray-300 border-r-gray-700 border-b-gray-700 shadow-lg z-40"
             >
                 <div class="p-1">
@@ -61,18 +66,16 @@ const closeApp = () => {
                         v-for="item in menuItems"
                         :key="item.id"
                         class="group px-3 py-2 hover:bg-[#000080] hover:text-white flex items-center gap-3 cursor-pointer"
+                        @click="openApp(item)"
                     >
                         <div
                             class="w-6 h-6 bg-gradient-to-b from-white to-gray-300 border border-gray-400 rounded-sm flex items-center justify-center"
                         >
                             <!-- Будет иконка приложения в пуске -->
                         </div>
-                        <button
-                            @click="openApp(item)"
-                            class="text-sm text-left whitespace-nowrap"
-                        >
+                        <span class="text-sm text-left whitespace-nowrap">
                             {{ item.title }}
-                        </button>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -81,34 +84,44 @@ const closeApp = () => {
         <div class="h-full flex items-center gap-2 pr-2">
             <TrayItems />
         </div>
+    </div>
 
+    <!-- Окно приложения - вне трея -->
+    <div
+        v-if="isAppOpen && activeAppComponent"
+        class="fixed inset-0 z-30 bg-white flex flex-col"
+    >
         <div
-            v-if="isAppOpen"
-            class="fixed inset-0 z-30 bg-white flex flex-col z-20"
+            class="h-8 bg-gradient-to-r from-[#000080] to-blue-800 flex items-center justify-between px-3 text-white"
         >
-            <div
-                class="h-8 bg-gradient-to-r from-[#000080] to-blue-800 flex items-center justify-between px-3 text-white"
-            >
-                <div class="flex items-center gap-2">
-                    <div
-                        class="w-6 h-6 bg-white/20 rounded-sm flex items-center justify-center"
-                    >
-                        <!-- Тут будет иконка приложения -->
-                    </div>
-                    <span class="text-sm font-medium">
-                        {{ activeAppTitle || "Приложение" }}
-                    </span>
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-6 h-6 bg-white/20 rounded-sm flex items-center justify-center"
+                >
+                    <!-- Тут будет иконка приложения -->
                 </div>
-                <div class="flex items-center gap-1">
-                    <button
-                        @click="closeApp"
-                        class="w-6 h-6 flex items-center justify-center bg-red-700 rounded-sm"
-                    >
-                        <span class="text-xs font-bold cursor-pointer">×</span>
-                    </button>
-                </div>
+                <span class="text-sm font-medium">
+                    {{ activeAppTitle || "Приложение" }}
+                </span>
+                <span
+                    v-if="activeAppTitle === 'Calculator'"
+                    class="text-xs opacity-75"
+                >
+                    - Standard
+                </span>
             </div>
-            <TrackApp></TrackApp>
+            <div class="flex items-center gap-1">
+                <button
+                    @click="closeApp"
+                    class="w-6 h-6 flex items-center justify-center bg-red-700 rounded-sm hover:bg-red-800 transition-colors"
+                >
+                    <span class="text-xs font-bold cursor-pointer">×</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex-1 overflow-auto">
+            <!-- Динамический компонент приложения -->
+            <component :is="activeAppComponent" />
         </div>
     </div>
 </template>
