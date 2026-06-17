@@ -1,55 +1,28 @@
 <script setup>
+import { computed } from "vue";
+
 const props = defineProps({
-    label: {
-        type: String,
-        required: true,
-    },
-    layout: {
-        type: String,
-        default: "row",
-    },
-    icon: {
-        type: [String, Object],
-        default: null,
-    },
-    layout: {
-        type: String,
-        default: "row",
-    },
-    wrapperClass: {
-        type: [String, Array, Object],
-        default: "",
-    },
-    description: {
-        type: String,
-        default: null,
-    },
+    label: { type: String, required: true },
+    description: { type: String, default: "" },
+    icon: { type: [String, Object, Function], default: "" },
+    layout: { type: String, default: "row" }
 });
+
+const isComponent = computed(() => typeof props.icon === "object" || typeof props.icon === "function");
 </script>
 
 <template>
     <div
-        class="p-2 rounded cursor-pointer hover:bg-[#E0E0E0] flex gap-2"
-        :class="[
-            layout === 'col' ? 'flex-col items-center' : 'items-center',
-            wrapperClass,
-        ]"
+        class="flex items-center gap-2 p-2 rounded hover:bg-[#000080] hover:text-white cursor-pointer transition-colors"
+        :class="layout === 'col' ? 'flex-col text-center min-w-[80px]' : 'flex-row'"
     >
-        <component
-            v-if="typeof icon !== 'string' && icon"
-            :is="icon"
-            class="w-7 h-7 text-black"
-        />
-
-        <img v-else-if="icon" :src="icon" alt="" class="w-7 h-7" />
-
-        <div class="flex flex-col items-center">
-            <span class="text-sm text-gray-600">
-                {{ label }}
-            </span>
-            <span v-if="description" class="text-xs text-gray-600 text-center">
-                {{ description }}
-            </span>
+        <div v-if="isComponent" class="w-8 h-8 flex items-center justify-center">
+            <component :is="icon" class="w-6 h-6" />
+        </div>
+        <img v-else-if="icon" :src="icon" class="w-8 h-8 object-contain" />
+        <div>
+            <span class="text-xs block">{{ label }}</span>
+            <span v-if="description" class="text-[10px] text-gray-500 block">{{ description }}</span>
         </div>
     </div>
 </template>
