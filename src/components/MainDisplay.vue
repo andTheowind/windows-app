@@ -5,6 +5,7 @@ import DesktopItem from "./DesktopItem.vue";
 import DesktopMenu from "./menu/DesktopMenu.vue";
 import ModalSection from "./ModalSection.vue";
 import ModalItem from "./ModalItem.vue";
+import bgImage from "@/assets/unnamed.png";
 
 const desktopItems = ref([
     {
@@ -151,8 +152,8 @@ function closeModal() {
 
 <template>
     <div
-        class="w-screen h-screen max-w-full bg-[#008080] max-h-full grid grid-flow-col auto-cols-[115px] overflow-hidden gap-3 p-4"
-        style="grid-template-rows: repeat(auto-fill, 96px)"
+        class="w-screen h-screen max-w-full max-h-full grid grid-flow-col auto-cols-[115px] overflow-hidden gap-3 p-4"
+        :style="{ gridTemplateRows: 'repeat(auto-fill, 96px)', backgroundImage: `url(${bgImage})`, backgroundPosition: '50% 50%', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }"
     >
         <DesktopItem
             v-for="item in desktopItems"

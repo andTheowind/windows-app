@@ -47,7 +47,7 @@ const closeApp = () => {
 
 <template>
     <div
-        class="fixed bottom-0 left-0 w-full h-10 bg-gradient-to-b from-[#0A246A] to-[#2458C5] border-t-[2px] border-[#2458C5] flex items-center justify-between"
+        class="fixed bottom-0 left-0 w-full h-10 bg-[#2458C5] border-t-[2px] border-[#2458C5] flex items-center justify-between"
     >
         <div class="flex items-center h-full relative">
             <button
