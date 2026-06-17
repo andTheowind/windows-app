@@ -5,7 +5,7 @@ import DesktopItem from "./DesktopItem.vue";
 import DesktopMenu from "./menu/DesktopMenu.vue";
 import ModalSection from "./ModalSection.vue";
 import ModalItem from "./ModalItem.vue";
-import bgImage from "@/assets/unnamed.png";
+import bgImage from "@/assets/img/unnamed.jpg";
 
 const desktopItems = ref([
     {
