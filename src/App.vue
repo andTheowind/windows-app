@@ -4,7 +4,7 @@ import MainDisplay from './components/MainDisplay.vue'
 
 <template>
   <div class="min-h-screen w-full flex flex-col">
-    <div class="w-full max-w-screen pt-5">
+    <div class="w-full max-w-screen">
       <MainDisplay />
     </div>
   </div>

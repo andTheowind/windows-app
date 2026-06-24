@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import TrayItems from "./items/TrayItems.vue";
-import TrackApp from "./applications/TrackApp.vue";
-import CalculatorApp from "./applications/CalculatorApp.vue";
+import TrackApp from "./applications/track-app/TrackApp.vue";
+import CalculatorApp from "./applications/calculator/CalculatorApp.vue";
 
 const isMenuOpen = ref(false);
 const isAppOpen = ref(false);
