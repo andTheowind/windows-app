@@ -6,6 +6,7 @@ import {
 } from "@heroicons/vue/24/solid";
 import TrackAppHeader from "./components/TrackAppHeader.vue";
 import TrackAppContent from "./components/TrackAppContent.vue";
+import TrackAppNavItem from "./components/TrackAppNavItem.vue";
 
 const trackAppItems = [
   { id: "timeline", label: "Хронология", icon: ClockIcon },
@@ -24,15 +25,14 @@ const trackAppItems = [
 
     <nav class="shrink-0 border-t bg-white">
       <ul class="flex items-center justify-around">
-        <li v-for="item in trackAppItems" :key="item.id" class="flex-1">
-          <a
-            :href="`#${item.id}`"
-            class="flex flex-col items-center p-2 gap-2 text-xs text-black"
-          >
-            <component :is="item.icon" class="h-6 w-6" />
-            {{ item.label }}
-          </a>
-        </li>
+        <TrackAppNavItem
+          v-for="item in trackAppItems"
+          :key="item.id"
+          :href="`#${item.id}`"
+        >
+          <component :is="item.icon" class="h-6 w-6" />
+          {{ item.label }}
+        </TrackAppNavItem>
       </ul>
     </nav>
   </div>

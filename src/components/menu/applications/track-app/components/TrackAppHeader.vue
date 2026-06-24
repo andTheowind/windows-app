@@ -1,5 +1,5 @@
 <script setup>
-import { SparklesIcon, ViewfinderCircleIcon } from "@heroicons/vue/24/solid";
+import { SparklesIcon } from "@heroicons/vue/24/solid";
 
 defineProps({
   progress: {
@@ -11,26 +11,25 @@ defineProps({
 
 <template>
   <header
-    class="flex w-full shrink-0 items-center justify-between bg-white px-8 py-4"
+    class="flex w-full shrink-0 items-center justify-between bg-white px-6 py-3"
   >
     <div class="flex items-center gap-3">
       <div
-        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500"
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black"
       >
         <SparklesIcon class="h-6 w-6 text-white" />
       </div>
-
-      <div class="flex flex-col">
-        <span class="text-xl font-bold tracking-wide text-gray-900"
-          >EVOLVE</span
-        >
-        <span class="text-sm font-medium text-emerald-600">развивайся</span>
+      <div class="flex flex-col text-black">
+        <span class="text-xl font-semibold">EVOLVE</span>
+        <span class="text-sm font-thin">развивайся</span>
       </div>
     </div>
 
-    <div class="flex items-center gap-2 text-emerald-600">
-      <ViewfinderCircleIcon class="h-6 w-6 shrink-0 text-gray-700" />
-      <span class="text-lg font-semibold tabular-nums">{{ progress }}%</span>
+    <div class="flex items-center gap-2">
+      <div class="h-3 w-3 rounded-full bg-red-500"></div>
+      <div class="text-lg text-black font-semibold">
+        Прогресс: <span>{{ progress }} %</span>
+      </div>
     </div>
   </header>
 </template>
