@@ -20,8 +20,8 @@ defineProps({
         <SparklesIcon class="h-6 w-6 text-white" />
       </div>
       <div class="flex flex-col text-black">
-        <span class="text-xl font-semibold">EVOLVE</span>
-        <span class="text-sm font-thin">развивайся</span>
+        <span class="text-xl font-semibold">Дневник</span>
+        <span class="text-sm font-thin">активности и цели</span>
       </div>
     </div>
 
